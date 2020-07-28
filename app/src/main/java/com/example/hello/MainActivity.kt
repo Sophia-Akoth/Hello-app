@@ -8,5 +8,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        tvRegister.setOnClickListener
+        val intent=intent(baseContext,Registration::class.java)
+        startActivity(intent)
     }
+
+}
+
+private operator fun Intent.invoke(baseContext: Context?, java: Class<Registration>): Intent? {
+
 }
