@@ -1,8 +1,16 @@
 package com.example.hello
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-data class Courses(val id:int,val name:String,val code:Int,val instructor:String,val description:String)
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_registration.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,13 +21,48 @@ class MainActivity : AppCompatActivity() {
             val intent = intent(baseContext, Registration::class.java)
             startActivity(intent)
         }
-    }
-    rvCourses.layoutManager = LinearLayoutManager(baseContext)
-    val coursesAdapter=CoursesActivity(listOf(Courses(101,"Python",1997,"Joy","Best"),
-        Courses(102,"Javascript",2012,"Mary","Enjoyable"),
-        Courses(301,"Ruby",2002,"Jane","heavy"),Courses(303,"Kotlin",1992,"Paul","Educative"),Courses(306,"PHP",1989,"Nony","inspiring"),Courses(309,"Java",2000,"Oli","broad"),Courses(307,"Cobalt",1998,"Peter""heavy"),Courses(202,"HTML",1999,"Welbeck","Outstanding"),Courses(505,"Pd",1968,"Zack","wide"),Courses(606,"Econ",1960,"Callum","Educative"))
+        val email = etUsername.text.toString()
+        val password = etPassword.text.toString()
 
-            rvCourses.adapter = namesAdapter
+        var requestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("email", email)
+            .addFormDataPart("password", password)
+            .build()
+
+        registerUser(requestBody)
+        Toast.makeText(baseContext, email, Toast.LENGTH_SHORT).show()
+    }
+}
+
+
+fun registerUser(requestBody: RequestBody) {
+    var apiClient = ApiClient.buildService(ApiInterface::class.java)
+    var registrationCall = apiClient.registerStudent(requestBody)
+    registrationCall.enqueue(object : Callback<RegistrationResponse2> {
+        override fun onFailure(call: Call<RegistrationResponse2>, t: Throwable) {
+            Toast.makeText(baseContext, t.message, Toast.LENGTH_LONG).show()
+        }
+
+        override fun onResponse(
+            call: Call<RegistrationResponse2>,
+            response: Response<RegistrationResponse2>
+        ) {
+            if (response.isSuccessful) {
+                Toast.makeText(baseContext, response.body()?.message, Toast.LENGTH_LONG).show()
+                startActivity(Intent)
+            } else {
+                Toast.makeText(baseContext, response.errorBody().toString(), Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
+    })
+}
+}
+
+    }
+
+
 }
 
 
