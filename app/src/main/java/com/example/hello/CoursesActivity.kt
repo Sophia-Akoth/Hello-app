@@ -1,18 +1,20 @@
 package com.example.hello
-data class Course(
-    val courseId: Int,
-    val courseName: String,
-    val courseCode: Int,
-    val instructor: String,
-    val description: String
-)
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.courses.view.*
+data class Course(
+    @SerializedName("course_id") val courseId: Int,
+    @SerializedName("course_name") val courseName: String,
+    @SerializedName("course_code") val courseCode: Int,
+    @SerializedName("instructor") val instructor: String,
+    @SerializedName("description") val description: String
+)
 
 class CoursesActivity(val coursesList: List<String>) :
     RecyclerView.Adapter<CoursesActivity.NamesViewHolder>() {

@@ -48,7 +48,7 @@
         android:ems="10"
         android:hint="Enter your Enail/Username"
         android:inputType="textPersonName"
-        android:text="Enter your Email/Username"
+        android:text="Enter your Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent" />
