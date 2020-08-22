@@ -18,9 +18,26 @@ class Registration : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
+        btnRegister.setOnClickListener {}
         val phoneNumber = etPhoneNumber.text.toString()
         val password = etPassword.text.toString()
         val passwordConfirmation = etConfirmPassword.text.toString()
+        if (firstName.isBlank() || firstName.isEmpty()) {
+            etFirstName.error = "first name is required"
+        }
+        if (lastName.isBlank() || lastName.isEmpty()) {
+            etLastName.error = "last name is required"
+        }
+        if (email.isBlank() || email.isEmpty()) {
+            etEmail.error = "email is required"
+        }
+        if (phoneNumber.isBlank() || phoneNumber.isEmpty()) {
+            etPhoneNumber.error = "phone number is required"
+        }
+        if (password.isBlank() || password.isEmpty()) {
+            etPassword.error = "password is required"
+        }
+
 
         var requestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)

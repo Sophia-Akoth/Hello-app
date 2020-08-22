@@ -26,6 +26,12 @@ class MainActivity : AppCompatActivity() {
         btnLogin.setOnClickListener {
             val email = etUsername.text.toString()
             val password = etPassword.text.toString()
+            if(email.isBlank() || email.isEmpty()){
+                etUsername.error="email is required"
+            }
+            if(password.isBlank() || password.isEmpty()){
+                etPassword.error="first name is required"
+            }
 
             var requestBody = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
