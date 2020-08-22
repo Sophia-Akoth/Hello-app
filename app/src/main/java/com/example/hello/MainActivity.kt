@@ -19,7 +19,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setContentView(R.layout.activity_courses)
-        tvRegister.setOnclickListener() {
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        if (progressBar != null) {
+            val btn = findViewById<Button>(R.id.button)
+            btnLogin.setOnClickListener {
+                val visibility = if (progressBar.visibility == View.GONE) View.VISIBLE else View.GONE
+                progressBar.visibility = visibility
+
+                val btnText = if (progressBar.visibility == View.GONE) "SHOW PROGRESSBAR" else "HIDE PROGRESSBAR"
+                btn.text = btnText
+
+                tvRegister.setOnclickListener() {
             val intent = Intent(baseContext, Registration::class.java)
             startActivity(intent)
         }

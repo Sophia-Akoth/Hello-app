@@ -17,8 +17,17 @@ class Registration : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        if (progressBar != null) {
+            val btn = findViewById<Button>(R.id.button)
+            btnRegister.setOnClickListener {
+                val visibility = if (progressBar.visibility == View.GONE) View.VISIBLE else View.GONE
+                progressBar.visibility = visibility
 
-        btnRegister.setOnClickListener {}
+                val btnText = if (progressBar.visibility == View.GONE) "SHOW PROGRESSBAR" else "HIDE PROGRESSBAR"
+                btn.text = btnText
+
+                btnRegister.setOnClickListener {}
         val phoneNumber = etPhoneNumber.text.toString()
         val password = etPassword.text.toString()
         val passwordConfirmation = etConfirmPassword.text.toString()
