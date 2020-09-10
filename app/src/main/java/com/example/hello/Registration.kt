@@ -17,33 +17,32 @@ class Registration : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        if (progressBar != null) {
-            val btn = findViewById<Button>(R.id.button)
-            btnRegister.setOnClickListener {
-                val visibility = if (progressBar.visibility == View.GONE) View.VISIBLE else View.GONE
-                progressBar.visibility = visibility
 
-                val btnText = if (progressBar.visibility == View.GONE) "SHOW PROGRESSBAR" else "HIDE PROGRESSBAR"
-                btn.text = btnText
 
-                btnRegister.setOnClickListener {}
+
+        btnRegister.setOnClickListener {}
         val phoneNumber = etPhoneNumber.text.toString()
         val password = etPassword.text.toString()
         val passwordConfirmation = etConfirmPassword.text.toString()
+        var error=false
         if (firstName.isBlank() || firstName.isEmpty()) {
+            error=true
             etFirstName.error = "first name is required"
         }
         if (lastName.isBlank() || lastName.isEmpty()) {
+            error=true
             etLastName.error = "last name is required"
         }
         if (email.isBlank() || email.isEmpty()) {
+            error=true
             etEmail.error = "email is required"
         }
         if (phoneNumber.isBlank() || phoneNumber.isEmpty()) {
+            error=true
             etPhoneNumber.error = "phone number is required"
         }
         if (password.isBlank() || password.isEmpty()) {
+            error=true
             etPassword.error = "password is required"
         }
 
