@@ -1,11 +1,12 @@
-package com.example.hello
+package com.example.hello.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.hello.*
+import com.example.hello.CoursesActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.android.synthetic.main.activity_registration.etPassword
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -56,7 +57,8 @@ class MainActivity : AppCompatActivity() {
 
 
 fun loginStudent(requestBody: RequestBody) {
-    var apiClient = ApiClient.buildService(ApiInterface::class.java)
+    var apiClient =
+        ApiClient.buildService(ApiInterface::class.java)
     var loginCall = apiClient.registerStudent(requestBody)
     loginCall.enqueue(object : Callback<RegistrationResponse2> {
         override fun onFailure(call: Call<RegistrationResponse2>, t: Throwable) {

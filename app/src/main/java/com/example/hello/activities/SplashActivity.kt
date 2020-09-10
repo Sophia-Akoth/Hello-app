@@ -1,9 +1,8 @@
-package com.example.hello
+package com.example.hello.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.hello.activities.MainActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,8 +13,7 @@ class SplashActivity : AppCompatActivity() {
         val accessToken = sharedPreferences.getString("ACCESS_TOKEN_KEY", "")
 
         if (accessToken.isNullOrEmpty()){
-            val intent=Intent(baseContext,
-                MainActivity::class.java)
+            val intent=Intent(baseContext,MainActivity::class.java)
             startActivity(intent)
         }
         else{
