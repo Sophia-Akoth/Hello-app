@@ -23,6 +23,7 @@ class ActivityCourses : AppCompatActivity() {
             rvCourses.layoutManager = LinearLayoutManager(baseContext)
             rvCourses.adapter = coursesAdapter
         }
+        RegisterCourse(requestBody)
 
         override fun onItemClick(course: Course) {
             fun registerCourse(requestBody: RequestBody) {
