@@ -10,4 +10,9 @@ interface ApiInterface {
     fun registerStudent(@Body requestBody: RequestBody): Call<RegistrationResponse>
     @POST("login")
     fun loginStudent(@Body requestBody: RequestBody): Call<RegistrationResponse2>
+    @POST("register-course")
+    fun registeredCourse(
+        @Body requestBody: RequestBody,
+        @Header("Authorization") accessToken: String
+    ): Call<RegisteredResponse>
 }
